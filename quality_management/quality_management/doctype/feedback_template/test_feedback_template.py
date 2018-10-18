@@ -19,9 +19,9 @@ def create_template():
 		"doctype": "Feedback Template",
 		"template": "Template Test",
 		"scope": "Company",
-		"feedback": [
+		"feedback_parameter": [
 			{
-				"feedback_parameter": "Feedback Template",
+				"parameter": "Test Feedback Template",
 			}
 		]
 	})

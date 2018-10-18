@@ -9,7 +9,7 @@ from frappe.model.document import Document
 class CustomerFeedback(Document):
 	
 	def validate(self):
-		if self.feedback != None:
+		if len(self.feedback) != 0:
 			rating = 0
 			total = 5 * len(self.feedback)
 			for data in self.feedback:
@@ -22,7 +22,7 @@ class CustomerFeedback(Document):
 		
 
 	def after_insert(self):
-		if self.feedback != None:
+		if len(self.feedback) != 0:
 			rating = 0
 			total = 5 * len(self.feedback)
 			for data in self.feedback:
