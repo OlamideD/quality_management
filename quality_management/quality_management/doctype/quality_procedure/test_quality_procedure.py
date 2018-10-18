@@ -8,7 +8,7 @@ import unittest
 
 class TestQualityProcedure(unittest.TestCase):
 	
-	def unit_test(self):		
+	def test_quality_management(self):		
 		test_create_procedure = create_procedure()
 		test_get_procedure = get_procedure()
 		self.assertEquals(test_create_procedure.name, test_get_procedure.name)
