@@ -7,4 +7,21 @@ import frappe
 import unittest
 
 class TestCustomerSurvey(unittest.TestCase):
-	pass
+
+	def test_feedback(self):
+		createfeedback = create_feedback()
+		print("createfeedback")
+		getfeedback = get_feedback()
+		print("getfeedback")
+
+def create_feedback():
+	feedback = frappe.get_doc({
+		"doctype": "Customer Feedback",
+		"date": ""+ frappe.utils.nowdate() +""
+	})
+	feedback.insert()
+	return feedback
+
+def get_feedback():
+	feedback = frappe.get_all("Customer Feedback")
+	return feedback
