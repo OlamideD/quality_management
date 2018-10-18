@@ -2,7 +2,7 @@
 // rename this file from _test_[name] to test_[name] to activate
 // and remove above this line
 
-QUnit.test("test: Quality Actions", function (assert) {
+QUnit.test("test: Quality Action", function (assert) {
 	let done = assert.async();
 
 	// number of asserts
