@@ -17,7 +17,6 @@ class TestQualityMeeting(unittest.TestCase):
 def create_meeting():
 	meeting = frappe.get_doc({
 		"doctype": "Quality Meeting",
-		"agenda": "Quality Meeting Test",
 		"scope": "Company",
 		"date": ""+ frappe.utils.nowdate() +""
 	})

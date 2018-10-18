@@ -39,7 +39,7 @@ class QualityReview(Document):
 			for data in problem:
 				doc.append("description",{
 					'problem': data,
-					'status': 'Opened'
+					'status': 'Open'
 				})
 			doc.insert()
 			frappe.db.commit()
@@ -65,7 +65,7 @@ class QualityReview(Document):
 				for data in problem:
 					doc.append("description",{
 						'problem': data,
-						'status': 'Opened'
+						'status': 'Open'
 					})
 				doc.insert()
 				frappe.db.commit()
@@ -78,7 +78,7 @@ class QualityReview(Document):
 					
 					doc.append("description",{
 						'problem': data,
-						'status': 'Opened'
+						'status': 'Open'
 					})
 				doc.save()
 				frappe.db.commit()

@@ -91,9 +91,9 @@ app_license = "MIT"
 # ---------------
 
 scheduler_events = {
-"daily": [
-    "quality_management.quality_management.tasks.review"
-]
+    "daily": [
+        "quality_management.quality_management.tasks.review"
+    ]
 }
 
 # Testing

@@ -17,9 +17,10 @@ class CustomerFeedback(Document):
 
 			if (rating*100)/total < 75:
 				self.action = "Action Initialised"
+			else:
+				pass
 		else:
-			pass
-		
+			pass		
 
 	def after_insert(self):
 		if len(self.feedback) != 0:
@@ -39,10 +40,10 @@ class CustomerFeedback(Document):
 						'date': ''+ frappe.utils.nowdate() +''
 					})
 					for data in self.feedback:
-						print(data.qualitative_feedback)
+						print(data)
 						doc.append("description",{
-							'problem': '' + str(data.parameter) + '-' + str(data.qualitative_feedback) + '',
-							'status': 'Opened'
+							'problem': data.parameter + '-' +data.qualitative_feedback,
+							'status': 'Open'
 						})
 					doc.insert()
 					frappe.db.commit()

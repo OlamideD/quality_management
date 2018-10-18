@@ -9,13 +9,12 @@ import unittest
 class TestPerformanceMonitoring(unittest.TestCase):
 	
 	def test_review(self):
-		createreview = create_review_withaction()
+		createreview = create_review()
 		print("createreview")
 
-def create_review_withaction():
+def create_review():
 	for data in frappe.get_all("Quality Goal",fields=['name','frequency']):
 		if data.frequency == 'None':
-			print(data.frequency)
 			objectives = frappe.get_all("Quality Objective", filters={'parent': ''+ data.name +''}, fields=['objective', 'target', 'unit'])
 			review = frappe.get_doc({
 				"doctype": "Quality Review",
