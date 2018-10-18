@@ -17,7 +17,7 @@ frappe.ui.form.on('Customer Feedback', {
 		frappe.call({
             "method": "frappe.client.get",
             args: {
-                doctype: "Feedback Template",
+                doctype: "Customer Feedback Template",
 				name: frm.doc.template
             },
             callback: function (data) {

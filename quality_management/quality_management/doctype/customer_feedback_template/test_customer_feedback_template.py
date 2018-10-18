@@ -6,8 +6,7 @@ from __future__ import unicode_literals
 import frappe
 import unittest
 
-class TestFeedbackTemplate(unittest.TestCase):
-
+class TestCustomerFeedbackTemplate(unittest.TestCase):
 	def test_template(self):
 		createtemplate = create_template()
 		print("createtemplate")
@@ -16,7 +15,7 @@ class TestFeedbackTemplate(unittest.TestCase):
 
 def create_template():
 	template = frappe.get_doc({
-		"doctype": "Feedback Template",
+		"doctype": "Customer Feedback Template",
 		"template": "Template Test",
 		"scope": "Company",
 		"feedback_parameter": [
@@ -29,5 +28,5 @@ def create_template():
 	return template
 
 def get_template():
-	template = frappe.get_all("Quality Template")
+	template = frappe.get_all("Customer Feedback Template")
 	return template

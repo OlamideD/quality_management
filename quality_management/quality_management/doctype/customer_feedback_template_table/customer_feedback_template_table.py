@@ -6,5 +6,5 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 
-class FeedbackTemplateTable(Document):
+class CustomerFeedbackTemplateTable(Document):
 	pass

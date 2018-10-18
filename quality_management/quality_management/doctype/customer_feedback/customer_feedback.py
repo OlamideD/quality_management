@@ -41,7 +41,7 @@ class CustomerFeedback(Document):
 					for data in self.feedback:
 						print(data.qualitative_feedback)
 						doc.append("description",{
-							'problem': data.qualitative_feedback,
+							'problem': '' + str(data.parameter) + '-' + str(data.qualitative_feedback) + '',
 							'status': 'Opened'
 						})
 					doc.insert()
