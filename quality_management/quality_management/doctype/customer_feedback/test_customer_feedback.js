@@ -2,7 +2,7 @@
 // rename this file from _test_[name] to test_[name] to activate
 // and remove above this line
 
-QUnit.test("test: Customer Survey", function (assert) {
+QUnit.test("test: Customer Feedback", function (assert) {
 	let done = assert.async();
 
 	// number of asserts
@@ -10,7 +10,7 @@ QUnit.test("test: Customer Survey", function (assert) {
 
 	frappe.run_serially([
 		// insert a new Customer Survey
-		() => frappe.tests.make('Customer Survey', [
+		() => frappe.tests.make('Customer Feedback', [
 			// values to be set
 			{key: 'value'}
 		]),
