@@ -6,7 +6,7 @@ def get_data():
 	return [
 		{
 			"module_name": "Quality Management",
-			"color": "grey",
+			"color": "blue",
 			"icon": "octicon octicon-package",
 			"type": "module",
 			"label": _("Quality Management")
