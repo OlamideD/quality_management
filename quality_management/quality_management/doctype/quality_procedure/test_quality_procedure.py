@@ -43,10 +43,10 @@ class TestQualityProcedure(unittest.TestCase):
 def create_procedure():
 	procedure = frappe.get_doc({
 		"doctype": "Quality Procedure",
-		"procedure": "Quality Procedure Test",
+		"procedure": "_Test Quality Procedure",
 		"procedure_step": [
 			{
-				"step": "Test Quality Proceure Step",
+				"step": "_Test Quality Procedure Table",
 			}
 		]
 	})

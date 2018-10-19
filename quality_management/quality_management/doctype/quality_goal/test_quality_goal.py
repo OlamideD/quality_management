@@ -16,12 +16,12 @@ class TestQualityGoal(unittest.TestCase):
 def create_goal():
 	goal = frappe.get_doc({
 		"doctype": "Quality Goal",
-		"goal": "Quality Goal Test",
+		"goal": "_Test Quality Goal",
 		"revision": "1",
 		"frequency": "Daily",
 		"objective": [
 			{
-				"objective": "Test Quality Objective",
+				"objective": "_Test Quality Objective",
 				"target": "4",
 			}
 		]

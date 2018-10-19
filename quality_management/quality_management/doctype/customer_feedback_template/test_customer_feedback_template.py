@@ -16,11 +16,11 @@ class TestCustomerFeedbackTemplate(unittest.TestCase):
 def create_template():
 	template = frappe.get_doc({
 		"doctype": "Customer Feedback Template",
-		"template": "Template Test",
+		"template": "_Test Customer Feedback Template",
 		"scope": "Company",
 		"feedback_parameter": [
 			{
-				"parameter": "Test Feedback Template",
+				"parameter": "_Test Customer Feedback Template Parameter",
 			}
 		]
 	})

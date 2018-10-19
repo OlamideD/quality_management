@@ -16,7 +16,7 @@ class TestMeasurementUnit(unittest.TestCase):
 def create_unit():
 	unit = frappe.get_doc({
 		"doctype": "Measurement Unit",
-		"unit": "Test Unit"
+		"unit": "_Test Unit"
 	})
 	unit.insert()
 	return unit
