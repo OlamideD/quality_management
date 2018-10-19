@@ -21,7 +21,15 @@ def create_review():
 		"goal": "_Test Quality Goal",
 		"procedure": "_Test Quality Procedure",
 		"scope": "Company",
-		"date": ""+ frappe.utils.nowdate() +""
+		"date": ""+ frappe.utils.nowdate() +"",
+		"values": [
+			{
+				"objective": "_Test Quality Objective",
+				"target": "100",
+				"achieved": "100",
+				"unit": "_Test Unit"
+			}
+		]
 	})
 	review_exist = frappe.get_list("Quality Review", filters={"goal": "_Test Quality Goal"})
 	if len(review_exist) == 0:
