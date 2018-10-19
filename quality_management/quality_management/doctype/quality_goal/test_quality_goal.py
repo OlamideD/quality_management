@@ -26,10 +26,14 @@ def create_goal():
 			}
 		]
 	})
-	goal.insert()
-	return goal
+	goal_exist = frappe.get_list("Quality Goal", filters={"goal": ""+ goal.goal +""}, fields=["name"])
+	if len(goal_exist) == 0:
+		goal.insert()
+		return goal
+	else:
+		return goal_exist[0]
 
 @frappe.whitelist()
 def get_goal():
-	goal = frappe.get_list("Quality Goal")
+	goal = frappe.get_list("Quality Goal", filters={"goal": "_Test Quality Goal"}, fields=["name"])
 	return goal[0]

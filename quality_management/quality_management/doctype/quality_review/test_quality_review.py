@@ -6,6 +6,8 @@ from __future__ import unicode_literals
 import frappe
 import unittest
 
+test_dependencies = ["Quality Procedure","Measurement Unit" ,"Quality Goal"]
+
 class TestQualityReview(unittest.TestCase):
 
 	def test_quality_review(self):
@@ -16,12 +18,18 @@ class TestQualityReview(unittest.TestCase):
 def create_review():
 	review = frappe.get_doc({
 		"doctype": "Quality Review",
+		"goal": "_Test Quality Goal",
+		"procedure": "_Test Quality Procedure",
 		"scope": "Company",
 		"date": ""+ frappe.utils.nowdate() +""
 	})
-	review.insert()
-	return review
+	review_exist = frappe.get_list("Quality Review", filters={"goal": "_Test Quality Goal"})
+	if len(review_exist) == 0:
+		review.insert()
+		return review
+	else:
+		return review_exist[0]
 
 def get_review():
-	review = frappe.get_list("Quality Review")
+	review = frappe.get_list("Quality Review", filters={"goal": "_Test Quality Goal"})
 	return review[0]

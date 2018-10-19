@@ -12,7 +12,6 @@ class TestQualityAction(unittest.TestCase):
 
 	def test_quality_action(self):
 		test_review, test_action = get_action()
-		print(test_review.name, test_action.review)
 		self.assertEquals(test_review.name, test_action.review)
 
 def get_action():

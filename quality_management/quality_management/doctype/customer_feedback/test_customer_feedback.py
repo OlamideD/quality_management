@@ -18,8 +18,12 @@ def create_feedback():
 		"doctype": "Customer Feedback",
 		"date": ""+ frappe.utils.nowdate() +""
 	})
-	feedback.insert()
-	return feedback
+	feedback_exist = frappe.get_list("Customer Feedback", filters={"date": ""+ feedback.date +""})
+	if len(feedback_exist) == 0:
+		feedback.insert()
+		return feedback
+	else:
+		return feedback_exist[0]
 
 def get_feedback():
 	feedback = frappe.get_list("Customer Feedback")

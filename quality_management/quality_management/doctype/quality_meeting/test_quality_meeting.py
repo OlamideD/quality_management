@@ -21,8 +21,12 @@ def create_meeting():
 		"status": "Close",
 		"date": ""+ frappe.utils.nowdate() +""
 	})
-	meeting.insert()
-	return meeting
+	meeting_exist = frappe.get_list("Quality Meeting", filters={"date": ""+ meeting.date +""}, fields=["name"])
+	if len(meeting_exist) == 0:
+		meeting.insert()
+		return meeting
+	else:
+		return meeting_exist[0]
 
 def get_meeting():
 	meeting = frappe.get_list("Quality Meeting")

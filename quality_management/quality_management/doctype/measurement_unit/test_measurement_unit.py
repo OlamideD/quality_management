@@ -18,9 +18,13 @@ def create_unit():
 		"doctype": "Measurement Unit",
 		"unit": "_Test Unit"
 	})
-	unit.insert()
-	return unit
+	unit_exist = frappe.get_list("Measurement Unit", filters={"unit": ""+ unit.unit +""}, fields=["name"])
+	if len(unit_exist) == 0:
+		unit.insert()
+		return unit
+	else:
+		return unit_exist[0]
 
 def get_unit():
-	unit = frappe.get_list("Measurement Unit")
+	unit = frappe.get_list("Measurement Unit", filters={"unit": "_Test Unit"})
 	return unit[0]
