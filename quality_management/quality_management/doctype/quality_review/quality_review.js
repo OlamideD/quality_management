@@ -11,7 +11,6 @@ frappe.ui.form.on('Quality Review', {
 		}
 	},
 	goal: function(frm) {
-<<<<<<< HEAD
 		if (frm.doc.goal != null){
 			if (frm.doc.values != null){
 				frm.fields_dict.values.grid.remove_all()
@@ -38,29 +37,5 @@ frappe.ui.form.on('Quality Review', {
 		else{
 			
 		}
-=======
-		if (frm.doc.values != null ){
-			frm.doc.procedure = '';
-			frm.fields_dict.values.grid.remove_all();
-			frm.refresh();
-		}
-		frappe.call({
-			"method": "frappe.client.get",
-			args: {
-				doctype: "Quality Goal",
-				name: frm.doc.goal
-			},
-			callback: function (data) {
-				for (var i = 0; i < data.message.objective.length; i++ ){
-				frm.add_child("values");
-					frm.fields_dict.values.get_value()[i].objective = data.message.objective[i].objective;
-					frm.fields_dict.values.get_value()[i].target = data.message.objective[i].target;
-					frm.fields_dict.values.get_value()[i].target_unit = data.message.objective[i].unit;
-					frm.fields_dict.values.get_value()[i].achieved_unit = data.message.objective[i].unit;
-				}
-				frm.refresh();
-			}
-		})
->>>>>>> 20b2fc67712c05c36750f189666b6c88a10d7cb7
 	},
 });
