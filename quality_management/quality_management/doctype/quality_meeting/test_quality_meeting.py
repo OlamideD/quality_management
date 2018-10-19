@@ -9,21 +9,21 @@ import unittest
 class TestQualityMeeting(unittest.TestCase):
 	pass
 
-#	def unit_test(self):
-#		test_create_meeting = create_meeting()
-#		test_get_meeting = get_meeting()
-#		self.assertEquals(test_create_meeting.name, test_get_meeting.name)
+	def test_quality_meeting(self):
+		test_create_meeting = create_meeting()
+		test_get_meeting = get_meeting()
+		self.assertEquals(test_create_meeting.name, test_get_meeting.name)
 
-#def create_meeting():
-#	meeting = frappe.get_doc({
-#		"doctype": "Quality Meeting",
-#		"scope": "Company",
-#		"status": "Close",
-#		"date": ""+ frappe.utils.nowdate() +""
-#	})
-#	meeting.insert()
-#	return meeting
+def create_meeting():
+	meeting = frappe.get_doc({
+		"doctype": "Quality Meeting",
+		"scope": "Company",
+		"status": "Close",
+		"date": ""+ frappe.utils.nowdate() +""
+	})
+	meeting.insert()
+	return meeting
 
-#def get_meeting():
-#	meeting = frappe.get_list("Quality Meeting", fields=['name', 'status'])
-#	return meeting[0]
+def get_meeting():
+	meeting = frappe.get_list("Quality Meeting")
+	return meeting[0]

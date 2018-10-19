@@ -7,21 +7,20 @@ import frappe
 import unittest
 
 class TestMeasurementUnit(unittest.TestCase):
-	pass
 
-#	def unit_test(self):
-#		test_create_unit = create_unit()
-#		test_get_unit = get_unit()
-#		self.assertEquals(test_create_unit.name, test_get_unit.name)
+	def test_measurement_unit(self):
+		test_create_unit = create_unit()
+		test_get_unit = get_unit()
+		self.assertEquals(test_create_unit.name, test_get_unit.name)
 
-#def create_unit():
-#	unit = frappe.get_doc({
-#		"doctype": "Measurement Unit",
-#		"unit": "Test Unit"
-#	})
-#	unit.insert()
-#	return unit
-#
-#def get_unit():
-#	unit = frappe.get_list("Measurement Unit")
-#	return unit[0]
+def create_unit():
+	unit = frappe.get_doc({
+		"doctype": "Measurement Unit",
+		"unit": "Test Unit"
+	})
+	unit.insert()
+	return unit
+
+def get_unit():
+	unit = frappe.get_list("Measurement Unit")
+	return unit[0]
