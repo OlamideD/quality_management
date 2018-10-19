@@ -22,7 +22,7 @@ def create_goal():
 		"objective": [
 			{
 				"objective": "_Test Quality Objective",
-				"target": "4",
+				"target": "4"
 			}
 		]
 	})

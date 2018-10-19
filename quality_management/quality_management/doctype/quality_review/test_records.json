@@ -2,10 +2,6 @@
     {
         "doctype": "Quality Review",
         "scope": "Company",
-        "values": [{
-            "objective": "Test Objective",
-			"target": "10",
-			"achieved": "8"
-        }]
+        "goal": "_Test Quality Goal 1"
     }
 ]

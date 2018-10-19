@@ -1,0 +1,16 @@
+[
+    {
+        "doctype": "Quality Goal",
+        "goal": "_Test Quality Goal 1",
+        "procedure": "_Test Quality Procedure 1",
+		"revision": "1",
+		"frequency": "None",
+		"objective": [
+			{
+				"objective": "_Test Quality Objective 1",
+                "target": "100",
+                "unit": "_Test Unit"
+			}
+        ]
+    }
+]
