@@ -2,6 +2,15 @@
     {
         "doctype": "Quality Review",
         "scope": "Company",
-        "goal": "_Test Quality Goal 1"
+        "goal": "_Test Quality Goal 1",
+        "values": [
+            {
+				"objective": "_Test Quality Objective 1",
+                "target": "100",
+                "target_unit": "_Test Unit 1",
+                "achieved": "4",
+                "achieved_unit": "_Test Unit 1"
+            }
+        ]
     }
 ]

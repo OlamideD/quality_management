@@ -23,7 +23,7 @@ def create_procedure():
 			}
 		]
 	})
-	procedure.insert()
+	procedure.insert()	
 	return procedure
 
 def get_procedure():
