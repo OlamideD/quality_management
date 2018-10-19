@@ -11,23 +11,26 @@ frappe.ui.form.on('Customer Feedback', {
 		}
 	},
 	template: function(frm){
-		if(frm.doc.feedback != null){
-			frm.doc.feedback = [];
-		}
-		frappe.call({
-            "method": "frappe.client.get",
-            args: {
-                doctype: "Customer Feedback Template",
-				name: frm.doc.template
-            },
-            callback: function (data) {
-				console.log(data.message);
-				for (var i = 0; i < data.message.feedback_parameter.length; i++ ){
-					frm.add_child("feedback");
-					frm.fields_dict.feedback.get_value()[i].parameter = data.message.feedback_parameter[i].parameter;
+		if(frm.doc.template != null){
+			if(frm.doc.feedback != null){
+				frm.doc.feedback = [];
+			}
+			frappe.call({
+				"method": "frappe.client.get",
+				args: {
+					doctype: "Customer Feedback Template",
+					name: frm.doc.template
+				},
+				callback: function (data) {
+					console.log(data.message);
+					for (var i = 0; i < data.message.feedback_parameter.length; i++ ){
+						frm.add_child("feedback");
+						frm.fields_dict.feedback.get_value()[i].parameter = data.message.feedback_parameter[i].parameter;
+					}
+					frm.refresh();
 				}
-				frm.refresh();
-            }
-        })
+			 })
+		}
+		else{}	 
 	}
 });
