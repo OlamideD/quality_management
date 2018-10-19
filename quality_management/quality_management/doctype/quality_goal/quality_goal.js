@@ -10,8 +10,15 @@ frappe.ui.form.on('Quality Goal', {
 			frm.set_value("revised_on", frappe.datetime.get_today());
 		}
 	},
-	frequency: function(frm) {
-		
+	measurable: function(frm) {
+		if(frm.doc.measurable == "Yes"){
+			frm.fields_dict.objective.grid.docfields[1].hidden = 1;
+			frm.fields_dict.objective.grid.docfields[2].hidden = 1;
+			frm.refresh();
+		}
+		else{
+
+		}
 	}
 });
 
