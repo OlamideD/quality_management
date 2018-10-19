@@ -17,5 +17,5 @@ class TestQualityAction(unittest.TestCase):
 
 def get_action():
 	review = frappe.get_list("Quality Review", fields=["name"])
-	action = frappe.get_list("Quality Action", fields=["name" ,"review"])
+	action = frappe.get_list("Quality Action", filters={"review": ""+ review[0].name +""}, fields=["name" ,"review"])
 	return review[0], action[0]
