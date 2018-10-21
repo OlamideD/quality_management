@@ -9,8 +9,7 @@ from frappe.model.document import Document
 class QualityReview(Document):	
 
 	def validate(self):
-		if self.non_measurable == "No":
-			print("No")
+		if self.measurable == "Yes":
 			if self.goal:
 				problem = ''
 				for value in self.values:
@@ -23,7 +22,6 @@ class QualityReview(Document):
 				else:
 					self.action = 'No Action'
 		else:
-			print("Yes")
 			if self.goal:
 				problem = ''
 				for value in self.values:
@@ -38,7 +36,7 @@ class QualityReview(Document):
 			
 
 	def after_insert(self):
-		if self.non_measurable == "No":
+		if self.measurable == "Yes":
 			if self.goal:
 				problem = ''
 				for value in self.values:
@@ -89,7 +87,7 @@ class QualityReview(Document):
 
 
 	def on_update(self):
-		if self.non_measurable == "No":
+		if self.measurable == "Yes":
 			if self.goal:
 				problem = ''
 				for value in self.values:

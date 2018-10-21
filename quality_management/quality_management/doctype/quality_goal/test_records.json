@@ -5,7 +5,7 @@
         "procedure": "_Test Quality Procedure 1",
 		"revision": "1",
         "frequency": "None",
-        "non_measurable": "No",
+        "measurable": "Yes",
 		"objective": [
 			{
 				"objective": "_Test Quality Objective 1",
