@@ -19,7 +19,7 @@ def create_goal():
 		"goal": "_Test Quality Goal",
 		"revision": "1",
 		"frequency": "Daily",
-		"non_measureable": "No",
+		"measureable": "Yes",
 		"objective": [
 			{
 				"objective": "_Test Quality Objective",
