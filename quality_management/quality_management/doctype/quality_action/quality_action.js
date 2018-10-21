@@ -56,7 +56,13 @@ frappe.ui.form.on('Quality Action', {
 					frm.refresh();
 				}
 			})
-		}	
+		}
+		else{
+			frm.doc.goal = '';
+			frm.doc.procedure = ''
+			frm.fields_dict.description.grid.remove_all()
+			frm.refresh();
+		}
 	},
 	feedback: function(frm) {
 		if(frm.doc.feedback != null){
