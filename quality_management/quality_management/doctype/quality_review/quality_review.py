@@ -33,8 +33,6 @@ class QualityReview(Document):
 				else:
 					self.action = 'No Action'
 			
-			
-
 	def after_insert(self):
 		if self.measurable == "Yes":
 			if self.goal:
@@ -84,7 +82,6 @@ class QualityReview(Document):
 						})
 					doc.insert()
 					frappe.db.commit()
-
 
 	def on_update(self):
 		if self.measurable == "Yes":
