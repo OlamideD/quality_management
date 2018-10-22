@@ -41,19 +41,24 @@ frappe.ui.form.on('Quality Review', {
 						frm.add_child("values");
 						frm.fields_dict.values.get_value()[i].objective = data.message.objective[i].objective;
 						if(frm.doc.measurable == "Yes"){
-							frm.fields_dict.values.grid.docfields[1].hidden = 0;
-							frm.fields_dict.values.grid.docfields[2].hidden = 0;
-							frm.fields_dict.values.grid.docfields[3].hidden = 0;
-							frm.fields_dict.values.grid.docfields[4].hidden = 1;
+							if(i < 1){
+								frm.fields_dict.values.grid.docfields[1].hidden = 0;
+								frm.fields_dict.values.grid.docfields[2].hidden = 0;
+								frm.fields_dict.values.grid.docfields[3].hidden = 0;
+								frm.fields_dict.values.grid.docfields[4].hidden = 1;
+							}
 							frm.fields_dict.values.get_value()[i].target = data.message.objective[i].target;
 							frm.fields_dict.values.get_value()[i].achieved = 0;
 							frm.fields_dict.values.get_value()[i].unit = data.message.objective[i].unit;
 						}
 						if(frm.doc.measurable == "No"){
-							frm.fields_dict.values.grid.docfields[1].hidden = 1;
-							frm.fields_dict.values.grid.docfields[2].hidden = 1;
-							frm.fields_dict.values.grid.docfields[3].hidden = 1;
-							frm.fields_dict.values.grid.docfields[4].hidden = 0;
+							if(i < 1){
+								frm.fields_dict.values.grid.docfields[1].hidden = 1;
+								frm.fields_dict.values.grid.docfields[2].hidden = 1;
+								frm.fields_dict.values.grid.docfields[3].hidden = 1;
+								frm.fields_dict.values.grid.docfields[4].hidden = 0;
+							}
+							frm.fields_dict.values.get_value()[i].yes_no = "No";
 						}
 					}
 					frm.refresh();
