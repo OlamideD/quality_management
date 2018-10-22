@@ -11,6 +11,7 @@ frappe.ui.form.on('Quality Goal', {
 		}
 	},
 	measurable: function(frm) {
+		frm.fields_dict.objective.grid.remove_all();
 		if(frm.doc.measurable == "No"){
 			frm.fields_dict.objective.grid.docfields[1].hidden = 1;
 			frm.fields_dict.objective.grid.docfields[2].hidden = 1;
