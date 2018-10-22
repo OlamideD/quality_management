@@ -9,6 +9,7 @@ frappe.ui.form.on('Quality Review', {
 		if(frm.doc.date == null){
 			frm.set_value("date", frappe.datetime.get_today());
 		}
+		$(".grid-add-row").hide();
 		if(frm.doc.measurable == "Yes"){
 			frm.fields_dict.values.grid.docfields[1].hidden = 0;
 			frm.fields_dict.values.grid.docfields[2].hidden = 0;

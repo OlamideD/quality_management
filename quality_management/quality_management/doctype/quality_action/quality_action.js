@@ -7,6 +7,7 @@ frappe.ui.form.on('Quality Action', {
 	},
 	onload: function(frm) {
 		frm.set_value("date", frappe.datetime.get_today())
+		$(".grid-add-row").hide();
 		if (frm.doc.review != null){
 			frm.set_value("type", "Quality Review")
 		}
