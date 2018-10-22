@@ -7,4 +7,17 @@ import frappe
 from frappe.model.document import Document
 
 class QualityAction(Document):
-	pass
+	
+	def validate(self):
+		status_flag = ''
+		for value in self.description:
+			if value.resolution == None:
+				value.status = 'Open'
+				status_flag = 'Under Review'
+			else:
+				value.status = 'Close'
+		
+		if status_flag == 'Under Review':
+			self.status = 'Under Review'
+		else:
+			self.status = 'Patched'
