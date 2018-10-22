@@ -46,10 +46,19 @@ def create_review(name, measurable):
 		"measurable": measurable,
 	})
 	for objective in objectives:
-		doc.append("values",{
-			'objective': objective.objective,
-			'target': objective.target,
-			'unit': objective.unit
-		})
+		print(measurable, objective.objective, objective.target, objective.unit)
+	if measurable == 'Yes':
+		for objective in objectives:
+			doc.append("values",{
+				'objective': objective.objective,
+				'target': objective.target,
+				'achieved': 0,
+				'unit': objective.unit
+			})
+	else:
+		for objective in objectives:
+			doc.append("values",{
+				'objective': objective.objective,
+			})
 	doc.insert()
 	frappe.db.commit()
