@@ -10,11 +10,15 @@ frappe.ui.form.on('Quality Goal', {
 			frm.fields_dict.objective.grid.docfields[1].hidden = 1;
 			frm.fields_dict.objective.grid.docfields[2].hidden = 1;
 			frm.refresh();
+			$("div[data-fieldname='target']").hide();
+			$("div[data-fieldname='unit']").hide();
 		}
 		else{
 			frm.fields_dict.objective.grid.docfields[1].hidden = 0;
 			frm.fields_dict.objective.grid.docfields[2].hidden = 0;
 			frm.refresh();
+			$("div[data-fieldname='target']").show();
+			$("div[data-fieldname='unit']").show();
 		}
 	},
 	revision: function(frm) {
@@ -28,11 +32,15 @@ frappe.ui.form.on('Quality Goal', {
 			frm.fields_dict.objective.grid.docfields[1].hidden = 1;
 			frm.fields_dict.objective.grid.docfields[2].hidden = 1;
 			frm.refresh();
+			$("div[data-fieldname='target']").hide();
+			$("div[data-fieldname='unit']").hide();
 		}
 		else{
 			frm.fields_dict.objective.grid.docfields[1].hidden = 0;
 			frm.fields_dict.objective.grid.docfields[2].hidden = 0;
 			frm.refresh();
+			$("div[data-fieldname='target']").show();
+			$("div[data-fieldname='unit']").show();
 		}
 	}
 });

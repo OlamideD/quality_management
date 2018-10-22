@@ -15,6 +15,10 @@ frappe.ui.form.on('Quality Review', {
 			frm.fields_dict.values.grid.docfields[3].hidden = 0;
 			frm.fields_dict.values.grid.docfields[4].hidden = 1;
 			frm.refresh();
+			$("div[data-fieldname='achieved']").show();
+			$("div[data-fieldname='target']").show();
+			$("div[data-fieldname='unit']").show()
+			$("div[data-fieldname='yes_no']").hide(); 
 		}
 		else{
 			frm.fields_dict.values.grid.docfields[1].hidden = 1;
@@ -22,6 +26,10 @@ frappe.ui.form.on('Quality Review', {
 			frm.fields_dict.values.grid.docfields[3].hidden = 1;
 			frm.fields_dict.values.grid.docfields[4].hidden = 0;
 			frm.refresh();
+			$("div[data-fieldname='achieved']").hide();
+			$("div[data-fieldname='target']").hide();
+			$("div[data-fieldname='unit']").hide();
+			$("div[data-fieldname='yes_no']").show(); 
 		}
 	},
 	goal: function(frm) {
@@ -62,6 +70,18 @@ frappe.ui.form.on('Quality Review', {
 						}
 					}
 					frm.refresh();
+					if(frm.doc.measurable == "Yes"){
+						$("div[data-fieldname='achieved']").show();
+						$("div[data-fieldname='target']").show();
+						$("div[data-fieldname='unit']").show()
+						$("div[data-fieldname='yes_no']").hide();
+					}
+					else{
+						$("div[data-fieldname='achieved']").hide();
+						$("div[data-fieldname='target']").hide();
+						$("div[data-fieldname='unit']").hide();
+						$("div[data-fieldname='yes_no']").show();
+					}
 				}
 			})
 		}
