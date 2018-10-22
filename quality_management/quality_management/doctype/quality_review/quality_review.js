@@ -9,6 +9,20 @@ frappe.ui.form.on('Quality Review', {
 		if(frm.doc.date == null){
 			frm.set_value("date", frappe.datetime.get_today());
 		}
+		if(frm.doc.measurable == "Yes"){
+			frm.fields_dict.values.grid.docfields[1].hidden = 0;
+			frm.fields_dict.values.grid.docfields[2].hidden = 0;
+			frm.fields_dict.values.grid.docfields[3].hidden = 0;
+			frm.fields_dict.values.grid.docfields[4].hidden = 1;
+			frm.refresh();
+		}
+		else{
+			frm.fields_dict.values.grid.docfields[1].hidden = 1;
+			frm.fields_dict.values.grid.docfields[2].hidden = 1;
+			frm.fields_dict.values.grid.docfields[3].hidden = 1;
+			frm.fields_dict.values.grid.docfields[4].hidden = 0;
+			frm.refresh();
+		}
 	},
 	goal: function(frm) {
 		if (frm.doc.goal != null){
