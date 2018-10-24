@@ -3,6 +3,17 @@
 
 frappe.ui.form.on('Quality Review', {
 	refresh: function(frm) {
+		frm.add_custom_button(__("Initiate Action"), function() {
+			frm.call({
+				method: "create_action",
+				doc: cur_frm.doc,
+				callback: function (r){
+					frappe.throw("Added")
+
+				}
+
+			})
+		});	
 
 	},
 	onload: function(frm){
