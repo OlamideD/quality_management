@@ -6,7 +6,59 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 
+
 class QualityReview(Document):	
+	@frappe.whitelist()
+	def create_action(self):
+		if self.measurable == "Yes":
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if int(value.achieved) < int(value.target):
+						problem = problem + 'In '+ value.objective +', the Achieved Value '+ str(value.achieved) +' is less than the Target Value '+ str(value.target) +'\n'
+
+				if(problem != ''):
+					problem = filter(None, problem.split("\n"))
+					doc = frappe.get_doc({
+						'doctype': 'Quality Action',
+						'action': 'Corrective',
+						'type': 'Quality Review',
+						'review': ''+ self.name +'',
+						'date': ''+ frappe.utils.nowdate() +'',
+						'procedure': ''+ self.procedure +''
+					})
+					for data in problem:
+						doc.append("description",{
+							'problem': data,
+							'status': 'Open'
+						})
+					doc.insert()
+					frappe.db.commit()
+		else:
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if value.yes_no == "No":
+						problem = problem + 'In '+ value.objective +', is set to "no".\n'
+
+				if(problem != ''):
+					problem = filter(None, problem.split("\n"))
+					doc = frappe.get_doc({
+						'doctype': 'Quality Action',
+						'action': 'Corrective',
+						'type': 'Quality Review',
+						'review': ''+ self.name +'',
+						'date': ''+ frappe.utils.nowdate() +'',
+						'procedure': ''+ self.procedure +''
+					})
+					for data in problem:
+						doc.append("description",{
+							'problem': data,
+							'status': 'Open'
+						})
+					doc.insert()
+					frappe.db.commit()
+
 
 	def validate(self):
 		if self.measurable == "Yes":
