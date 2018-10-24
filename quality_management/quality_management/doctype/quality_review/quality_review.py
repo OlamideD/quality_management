@@ -8,6 +8,7 @@ from frappe.model.document import Document
 
 
 class QualityReview(Document):	
+
 	@frappe.whitelist()
 	def create_action(self):
 		if self.measurable == "Yes":
@@ -85,7 +86,7 @@ class QualityReview(Document):
 				else:
 					self.action = 'No Action'
 			
-	def after_insert(self):
+"""	def after_insert(self):
 		if self.measurable == "Yes":
 			if self.goal:
 				problem = ''
@@ -226,3 +227,4 @@ class QualityReview(Document):
 						frappe.delete_doc("Quality Action", ""+ query[0].name +"")
 					else:
 						pass
+"""
