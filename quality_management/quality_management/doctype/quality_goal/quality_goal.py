@@ -7,7 +7,6 @@ import frappe
 from frappe.model.document import Document
 
 class QualityGoal(Document):
-<<<<<<< HEAD
 	def create_review(self):
 		objectives = frappe.get_all("Quality Objective", filters={'parent': ''+ self.name +''}, fields=['objective', 'target', 'unit'])
 		doc = frappe.get_doc({
@@ -33,8 +32,4 @@ class QualityGoal(Document):
 				})
 		doc.insert()
 		frappe.db.commit()
-=======
 
-	def create_review(self):
-		pass
->>>>>>> dde2d455d1c2c9c04f4662dc59013c8e4f9d4ca8
