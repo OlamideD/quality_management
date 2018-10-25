@@ -7,4 +7,6 @@ import frappe
 from frappe.model.document import Document
 
 class QualityGoal(Document):
-	pass
+
+	def create_review(self):
+		pass
