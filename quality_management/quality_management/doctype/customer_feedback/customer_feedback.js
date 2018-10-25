@@ -3,7 +3,16 @@
 
 frappe.ui.form.on('Customer Feedback', {
 	refresh: function(frm) {
-
+		frm.add_custom_button(__("Initialize Action"), function() {
+			frm.call({
+				method: "create_action",
+				doc: cur_frm.doc,
+				callback: function (data){
+					frappe.msgprint(data);
+					frm.refresh();
+				}
+			})
+		});
 	},
 	onload: function(frm){
 		if(frm.doc.date == null){

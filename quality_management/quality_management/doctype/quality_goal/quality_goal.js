@@ -3,7 +3,7 @@
 
 frappe.ui.form.on('Quality Goal', {
 	refresh: function(frm) {
-		frm.add_custom_button(__("Conduct Review"), function() {
+		frm.add_custom_button(__("Initialize Review"), function() {
 			frm.call({
 				method: "create_review",
 				doc: cur_frm.doc,

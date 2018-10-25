@@ -8,8 +8,8 @@ frappe.ui.form.on('Quality Review', {
 				method: "create_action",
 				doc: cur_frm.doc,
 				callback: function (data){
-					console.log(data)
 					frappe.msgprint(data);
+					frm.refresh();
 				}
 			})
 		});
