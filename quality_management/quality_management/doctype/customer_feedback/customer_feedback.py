@@ -15,7 +15,7 @@ class CustomerFeedback(Document):
 			for data in self.feedback:
 				rating += int(data.rating)
 
-			if (rating*100)/total < 75:
+			if (rating*100)/total < self.expected_feedback_percentage:
 				self.action = "Action Initialised"
 			else:
 				pass
@@ -29,7 +29,7 @@ class CustomerFeedback(Document):
 			for data in self.feedback:
 				rating += int(data.rating)
 
-			if (rating*100)/total < 75:
+			if (rating*100)/total < self.expected_feedback_percentage:
 				query = frappe.get_list("Quality Action", filters={"feedback": ""+ self.name +""})
 				if len(query) == 0:
 					doc = frappe.get_doc({
