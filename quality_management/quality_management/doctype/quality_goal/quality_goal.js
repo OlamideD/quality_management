@@ -9,7 +9,7 @@ frappe.ui.form.on('Quality Goal', {
 					method: "create_review",
 					doc: cur_frm.doc,
 					callback: function (data){
-						frappe.msgprint("data");
+						frappe.msgprint("Quality Review has been initiated");
 					}
 
 				})
