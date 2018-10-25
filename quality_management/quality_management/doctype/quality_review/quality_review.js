@@ -7,14 +7,12 @@ frappe.ui.form.on('Quality Review', {
 			frm.call({
 				method: "create_action",
 				doc: cur_frm.doc,
-				callback: function (r){
-					frappe.throw("Added")
-
+				callback: function (data){
+					console.log(data)
+					frappe.msgprint(data);
 				}
-
 			})
-		});	
-
+		});
 	},
 	onload: function(frm){
 		if(frm.doc.date == null){

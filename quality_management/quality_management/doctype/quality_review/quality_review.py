@@ -12,6 +12,7 @@ class QualityReview(Document):
 	@frappe.whitelist()
 	def create_action(self):
 		if self.measurable == "Yes":
+			print("In measurable yes if")
 			if self.goal:
 				problem = ''
 				for value in self.values:
@@ -35,8 +36,13 @@ class QualityReview(Document):
 						})
 					doc.insert()
 					frappe.db.commit()
+					return "Action Initialized"
+				else:
+					print("In measurable yes else")
+					return "Action Not Initialized"
 		else:
 			if self.goal:
+				print("In non measurable yes if")
 				problem = ''
 				for value in self.values:
 					if value.yes_no == "No":
@@ -59,7 +65,10 @@ class QualityReview(Document):
 						})
 					doc.insert()
 					frappe.db.commit()
-
+					return "Action Initialized"
+				else:
+					print("In non measurable yes else")
+					return "Action Not Initialized"
 
 	def validate(self):
 		if self.measurable == "Yes":
