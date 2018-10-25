@@ -22,7 +22,7 @@ frappe.ui.form.on('Customer Feedback', {
 					name: frm.doc.template
 				},
 				callback: function (data) {
-					console.log(data.message);
+					frm.doc.expected_feedback_percentage = data.message.expected_feedback_percentage;
 					for (var i = 0; i < data.message.feedback_parameter.length; i++ ){
 						frm.add_child("feedback");
 						frm.fields_dict.feedback.get_value()[i].parameter = data.message.feedback_parameter[i].parameter;
