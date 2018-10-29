@@ -6,83 +6,234 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 
+
 class QualityReview(Document):	
 
-	def after_insert(self):
-		print("After Insert")
-		print(self.name)
-		problem = ''
-		for value in self.values:
-			if int(value.achieved) < int(value.target):
-				problem = problem + 'In '+ value.objective +', the Achieved Value '+ str(value.achieved) +' is less than the Target Value '+ str(value.target) +'\n'
+	@frappe.whitelist()
+	def create_action(self):
+		if self.measurable == "Yes":
+			print("In measurable yes if")
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if int(value.achieved) < int(value.target):
+						problem = problem + 'In '+ value.objective +', the Achieved Value '+ str(value.achieved) +' is less than the Target Value '+ str(value.target) +'\n'
 
-		if(problem != ''):
-			problem = filter(None, problem.split("\n"))
-			print(problem)
-			doc = frappe.get_doc({
-				'doctype': 'Quality Action',
-				'action': 'Corrective',
-				'type': 'Quality Review',
-				'review': ''+ self.name +'',
-				'date': ''+ frappe.utils.nowdate() +''
-			})
-			for data in problem:
-				doc.append("description",{
-					'problem': data
-				})
-		#print(doc.review)
-		#print(doc.type)
-		#print(doc.action)
-		#print("\n".join(doc.description))		
-		#	doc.save()
-		#	doc.insert()
-		#	frappe.db.commit()
-		
-		#query = frappe.get_list("Quality Action", filters={"review":""+ self.name +""})
-		#if len(query) == 0:
-		#	for value in self.values:
-		#		if int(value.achieved) < int(value.target):
-		#			problem = problem + 'In '+ value.objective +', the Achieved Value '+ str(value.achieved) +' is less than the Target Value '+ str(value.target) +'\n'
+				if(problem != ''):
+					problem = filter(None, problem.split("\n"))
+					doc = frappe.get_doc({
+						'doctype': 'Quality Action',
+						'action': 'Corrective',
+						'type': 'Quality Review',
+						'review': ''+ self.name +'',
+						'date': ''+ frappe.utils.nowdate() +'',
+						'procedure': ''+ self.procedure +''
+					})
+					for data in problem:
+						doc.append("description",{
+							'problem': data,
+							'status': 'Open'
+						})
+					doc.insert()
+					frappe.db.commit()
+					return "Action Initialized"
+				else:
+					print("In measurable yes else")
+					return "Action Not Initialized"
+		else:
+			if self.goal:
+				print("In non measurable yes if")
+				problem = ''
+				for value in self.values:
+					if value.yes_no == "No":
+						problem = problem + 'In '+ value.objective +', is set to "no".\n'
 
-		#	if(problem != ''):
-		#		problem = filter(None, problem.split("\n"))
-		#		print(problem)
-				#doc = frappe.get_doc({
-				#	'doctype': 'Quality Action',
-				#	'action': 'Corrective',
-				#	'type': 'Quality Review',
-				#	'review': ''+ self.name +'',
-				#	'date': ''+ frappe.utils.nowdate() +''
-				#})
-				#for data in problem:
-				#	doc.append("description",{
-				#		'problem': data
-				#	})
-				#doc.save()
-				#doc.insert()
-				#frappe.db.commit()
-		#else:
-		#	pass
+				if(problem != ''):
+					problem = filter(None, problem.split("\n"))
+					doc = frappe.get_doc({
+						'doctype': 'Quality Action',
+						'action': 'Corrective',
+						'type': 'Quality Review',
+						'review': ''+ self.name +'',
+						'date': ''+ frappe.utils.nowdate() +'',
+						'procedure': ''+ self.procedure +''
+					})
+					for data in problem:
+						doc.append("description",{
+							'problem': data,
+							'status': 'Open'
+						})
+					doc.insert()
+					frappe.db.commit()
+					return "Action Initialized"
+				else:
+					print("In non measurable yes else")
+					return "Action Not Initialized"
+
+	def validate(self):
+		if self.measurable == "Yes":
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if int(value.achieved) < int(value.target):
+						problem = 'set'
+						break
+
+				if problem == 'set':
+					self.action = 'Action Initialised'
+				else:
+					self.action = 'No Action'
+		else:
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if value.yes_no == "No":
+						problem = 'set'
+
+				if problem == 'set':
+					self.action = 'Action Initialised'
+				else:
+					self.action = 'No Action'
+			
+"""	def after_insert(self):
+		if self.measurable == "Yes":
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if int(value.achieved) < int(value.target):
+						problem = problem + 'In '+ value.objective +', the Achieved Value '+ str(value.achieved) +' is less than the Target Value '+ str(value.target) +'\n'
+
+				if(problem != ''):
+					problem = filter(None, problem.split("\n"))
+					doc = frappe.get_doc({
+						'doctype': 'Quality Action',
+						'action': 'Corrective',
+						'type': 'Quality Review',
+						'review': ''+ self.name +'',
+						'date': ''+ frappe.utils.nowdate() +'',
+						'procedure': ''+ self.procedure +''
+					})
+					for data in problem:
+						doc.append("description",{
+							'problem': data,
+							'status': 'Open'
+						})
+					doc.insert()
+					frappe.db.commit()
+		else:
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if value.yes_no == "No":
+						problem = problem + 'In '+ value.objective +', is set to "no".\n'
+
+				if(problem != ''):
+					problem = filter(None, problem.split("\n"))
+					doc = frappe.get_doc({
+						'doctype': 'Quality Action',
+						'action': 'Corrective',
+						'type': 'Quality Review',
+						'review': ''+ self.name +'',
+						'date': ''+ frappe.utils.nowdate() +'',
+						'procedure': ''+ self.procedure +''
+					})
+					for data in problem:
+						doc.append("description",{
+							'problem': data,
+							'status': 'Open'
+						})
+					doc.insert()
+					frappe.db.commit()
 
 	def on_update(self):
-		print("On Update")
-		problem = ''
-		print(self.name)
-		query = frappe.get_list("Quality Action", filters={"review":""+ self.name +""})
-		print()
-		if len(query) != 0:
-			print("In If")
-			for value in self.values:
-				if int(value.achieved) < int(value.target):
-					problem = problem + 'In '+ value.objective +', the Achieved Value '+ str(value.achieved) +' is less than the Target Value '+ str(value.target) +'\n'
+		if self.measurable == "Yes":
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if int(value.achieved) < int(value.target):
+						problem = problem + 'In '+ value.objective +', the Achieved Value '+ str(value.achieved) +' is less than the Target Value '+ str(value.target) +'\n'
 
-			print(problem)
-			if problem != '':
-				problem = filter(None, problem.split("\n"))
-				pass
-#				query = frappe.db.sql("""UPDATE `tabQuality Action` SET problem='"""+ problem +"""' WHERE review='"""+self.name+"""'""")
-			else:
-				pass
-#				query = frappe.db.sql("""DELETE FROM `tabQuality Action` WHERE review='"""+self.name+"""'""")
+				if problem != '':
+					problem = filter(None, problem.split("\n"))
+					query = frappe.get_list("Quality Action", filters={"review":""+ self.name +""})
+					if len(query) == 0:
+						doc = frappe.get_doc({
+							'doctype': 'Quality Action',
+							'action': 'Corrective',
+							'type': 'Quality Review',
+							'review': ''+ self.name +'',
+							'date': ''+ frappe.utils.nowdate() +'',
+							'procedure': ''+ self.procedure +''
+						})
+						for data in problem:
+							doc.append("description",{
+								'problem': data,
+								'status': 'Open'
+							})
+						doc.insert()
+						frappe.db.commit()
+					else:
+						child_table = frappe.get_list("Quality Action Table", filters={'parent': ''+ query[0].name +''})
+						for child in child_table:
+							frappe.delete_doc("Quality Action Table", ""+ child.name +"")
+						doc = frappe.get_doc("Quality Action", ""+ query[0].name +"")
+						for data in problem:
+							
+							doc.append("description",{
+								'problem': data,
+								'status': 'Open'
+							})
+						doc.save()
+						frappe.db.commit()
+				else:
+					query = frappe.get_list("Quality Action", filters={"review":""+ self.name +""})
+					if len(query) != 0:
+						frappe.delete_doc("Quality Action", ""+ query[0].name +"")
+					else:
+						pass
 		else:
-			pass
+			if self.goal:
+				problem = ''
+				for value in self.values:
+					if value.yes_no == "No":
+						problem = problem + 'In '+ value.objective +', is set to "no".\n'
+
+				if problem != '':
+					problem = filter(None, problem.split("\n"))
+					query = frappe.get_list("Quality Action", filters={"review":""+ self.name +""})
+					if len(query) == 0:
+						doc = frappe.get_doc({
+							'doctype': 'Quality Action',
+							'action': 'Corrective',
+							'type': 'Quality Review',
+							'review': ''+ self.name +'',
+							'date': ''+ frappe.utils.nowdate() +'',
+							'procedure': ''+ self.procedure +''
+						})
+						for data in problem:
+							doc.append("description",{
+								'problem': data,
+								'status': 'Open'
+							})
+						doc.insert()
+						frappe.db.commit()
+					else:
+						child_table = frappe.get_list("Quality Action Table", filters={'parent': ''+ query[0].name +''})
+						for child in child_table:
+							frappe.delete_doc("Quality Action Table", ""+ child.name +"")
+						doc = frappe.get_doc("Quality Action", ""+ query[0].name +"")
+						for data in problem:
+							
+							doc.append("description",{
+								'problem': data,
+								'status': 'Open'
+							})
+						doc.save()
+						frappe.db.commit()
+				else:
+					query = frappe.get_list("Quality Action", filters={"review":""+ self.name +""})
+					if len(query) != 0:
+						frappe.delete_doc("Quality Action", ""+ query[0].name +"")
+					else:
+						pass
+"""

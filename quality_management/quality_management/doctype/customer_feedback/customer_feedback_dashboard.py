@@ -5,7 +5,7 @@ def get_data():
         'fieldname': 'feedback',
         'transactions': [
             {
-                'label': _('Dummy'),
+                'label': _('Action'),
                 'items': ['Quality Action']
             }
         ],

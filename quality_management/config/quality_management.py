@@ -27,25 +27,6 @@ def get_data():
                     "type": "doctype",
                     "name": "Quality Action"
 
-                },
-                {
-                    "type": "doctype",
-                    "name": "Quality Monitoring Frequency"
-
-                }
-            ]
-        },
-        {
-            "label": "Audit",
-            "items": [
-                {
-                    "type": "doctype",
-                    "name": "Quality Audit"
-                },
-                {
-                    "type": "doctype",
-                    "name": "Quality Audit Type"
-
                 }
             ]
         },
@@ -65,12 +46,10 @@ def get_data():
                 {
                     "type": "doctype",
                     "name": "Customer Feedback"
-
                 },
                 {
                     "type": "doctype",
-                    "name": "Feedback Template"
-
+                    "name": "Customer Feedback Template"
                 }
             ]
         },

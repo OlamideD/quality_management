@@ -6,8 +6,8 @@ app_name = "quality_management"
 app_title = "Quality Management"
 app_publisher = "Frappe"
 app_description = "To improve quality of products or services your company provides."
-app_icon = "octicon octicon-file-directory"
-app_color = "grey"
+app_icon = "octicon octicon-package"
+app_color = "blue"
 app_email = "hello@frappe.io"
 app_license = "MIT"
 
@@ -91,12 +91,9 @@ app_license = "MIT"
 # ---------------
 
 scheduler_events = {
-"daily": [
-    "quality_management.quality_management.tasks.review"
-],
-"monthly": [
-    "quality_management.quality_management.tasks.audit"
-]
+    "daily": [
+        "quality_management.quality_management.tasks.review"
+    ]
 }
 
 # Testing

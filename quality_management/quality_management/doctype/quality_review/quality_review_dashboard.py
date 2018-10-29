@@ -5,8 +5,12 @@ def get_data():
         'fieldname': 'review',
         'transactions': [
             {
-                'label': _('Dummy'),
+                'label': _('Action'),
                 'items': ['Quality Action']
+            },
+            {
+                'label': _('Meeting'),
+                'items': ['Quality Meeting']
             }
         ],
     }
