@@ -3,16 +3,18 @@
 
 frappe.ui.form.on('Quality Review', {
 	refresh: function(frm) {
-		frm.add_custom_button(__("Initiate Action"), function() {
-			frm.call({
-				method: "create_action",
-				doc: cur_frm.doc,
-				callback: function (data){
-					frappe.msgprint(data);
-					frm.refresh();
-				}
-			})
-		});
+		if(!frm.doc.__islocal){
+			frm.add_custom_button(__("Initiate Action"), function() {
+				frm.call({
+					method: "create_action",
+					doc: cur_frm.doc,
+					callback: function (data){
+						frappe.msgprint(data);
+						frm.refresh();
+					}
+				})
+			});
+		}
 	},
 	onload: function(frm){
 		if(frm.doc.date == null){

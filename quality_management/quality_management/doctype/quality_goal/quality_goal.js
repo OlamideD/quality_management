@@ -3,16 +3,18 @@
 
 frappe.ui.form.on('Quality Goal', {
 	refresh: function(frm) {
-		frm.add_custom_button(__("Initialize Review"), function() {
-			frm.call({
-				method: "create_review",
-				doc: cur_frm.doc,
-				callback: function (data){
-					frappe.msgprint("Quality Review has been initiated");
-					frm.refresh();
-				}
-			})
-		});
+		if(!frm.doc.__islocal){
+			frm.add_custom_button(__("Initialize Review"), function() {
+				frm.call({
+					method: "create_review",
+					doc: cur_frm.doc,
+					callback: function (data){
+						frappe.msgprint("Quality Review has been initiated");
+						frm.refresh();
+					}
+				})
+			});
+		}
 	},
 	onload: function(frm){
 		if(frm.doc.measurable == "No"){
