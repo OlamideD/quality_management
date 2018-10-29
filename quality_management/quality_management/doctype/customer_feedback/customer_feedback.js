@@ -10,7 +10,7 @@ frappe.ui.form.on('Customer Feedback', {
 					doc: cur_frm.doc,
 					callback: function (data){
 						frappe.msgprint(data);
-						frm.refresh();
+						self.frm.refresh();
 					}
 				})
 			});
@@ -33,7 +33,6 @@ frappe.ui.form.on('Customer Feedback', {
 					name: frm.doc.template
 				},
 				callback: function (data) {
-					frm.doc.expected_feedback_percentage = data.message.expected_feedback_percentage;
 					for (var i = 0; i < data.message.feedback_parameter.length; i++ ){
 						frm.add_child("feedback");
 						frm.fields_dict.feedback.get_value()[i].parameter = data.message.feedback_parameter[i].parameter;
