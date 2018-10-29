@@ -10,7 +10,7 @@ frappe.ui.form.on('Customer Feedback', {
 					doc: cur_frm.doc,
 					callback: function (data){
 						frappe.msgprint(data);
-						self.frm.refresh();
+						frm.refresh();
 					}
 				})
 			});
