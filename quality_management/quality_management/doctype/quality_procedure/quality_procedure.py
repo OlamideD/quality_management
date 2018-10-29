@@ -11,18 +11,23 @@ class QualityProcedure(NestedSet):
 	nsm_parent_field = 'parent_quality_procedure'
 	
 	def before_save(self):
-		print(self.name)
 		for data in self.procedure_step:
 			if data.procedure == 'Procedure' and data.procedure_name != '':
 				self.is_group = 1
 				data.step = data.procedure_name
+				print(data.procedure_name)
+				doc = frappe.get_doc("Quality Procedure", data.procedure_name)
+				print("____________________________________________________________________________________")
+				doc.parent_quality_procedure = self.name
+				doc.save()
 			else:
 				pass
 	
 	def after_insert(self):
 		for data in self.procedure_step:
 			if data.procedure == "Procedure":
-				print(data.procedure_name)
+				pass
+			
 
 @frappe.whitelist()
 def get_children(doctype, parent=None, parent_quality_procedure=None, is_root=False):
