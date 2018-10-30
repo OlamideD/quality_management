@@ -24,7 +24,9 @@ class QualityProcedure(NestedSet):
 			if data.procedure == "Procedure":
 				pass
 				
-			
+	def on_trash(self):
+		print("--------------------------------inside-----------------------------------------")
+
 
 @frappe.whitelist()
 def get_children(doctype, parent=None, parent_quality_procedure=None, is_root=False):

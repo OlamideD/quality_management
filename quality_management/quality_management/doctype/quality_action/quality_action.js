@@ -34,7 +34,7 @@ frappe.ui.form.on('Quality Action', {
 				callback: function (data) {
 					for (var i = 0; i < data.message.values.length; i++ ){
 						if (data.message.values[i].achieved < data.message.values[i].target){
-							problems += data.message.values[i].objective +"-"+ data.message.values[i].achieved + " " + data.message.values[i].target_unit + "\n";
+							problems += data.message.values[i].objective +"-"+ data.message.values[i].achieved + " " + data.message.values[i].unit + "\n";
 						}
 					}
 					problems= problems.replace(/\n$/, "").split("\n");
