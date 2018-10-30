@@ -21,7 +21,6 @@ class QualityProcedure(NestedSet):
 			if data.procedure == "Procedure":
 				doc = frappe.get_doc("Quality Procedure", data.procedure_name)
 				doc.parent_quality_procedure = self.name
-				print(doc.parent_quality_procedure)
 				doc.save()
 			
 
