@@ -1,6 +1,6 @@
 ## Quality Management
 
-Quality Management module contains documentation and revivews of various Goals and Procedures of a Company.
+Quality Management module contains documentation and reviews of various Goals and Procedures of a Company.
 
 Entries in Quality Management Module are:
 
