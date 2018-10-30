@@ -25,7 +25,18 @@ class QualityProcedure(NestedSet):
 				pass
 				
 	def on_trash(self):
-		print("--------------------------------inside-----------------------------------------")
+		doc = frappe.get_doc("Quality Procedure", self.parent_quality_procedure)
+		i = 0
+		for data in doc.procedure_step:
+			if(self.name == doc.procedure_step[i].procedure_name):
+				doc.procedure_step.remove(data)
+				doc.save()
+			i += 1
+		
+
+		
+		
+		
 
 
 @frappe.whitelist()
