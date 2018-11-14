@@ -1,6 +1,6 @@
 ## Quality Management
 
-[Updated](https://github.com/hrwX/erpnext/tree/quality_management)
+[Updated Version!](https://github.com/hrwX/erpnext/tree/quality_management)
 
 Quality Management module contains documentation and reviews of various Goals and Procedures of a Company.
 
